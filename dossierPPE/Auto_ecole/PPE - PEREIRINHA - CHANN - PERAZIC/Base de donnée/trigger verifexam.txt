@@ -1,0 +1,13 @@
+delimiter //
+create trigger Verifexam
+before insert on Exampermis
+for each row
+begin
+declare nb int;
+select count(*) into nb from Examcode where idclient=new.idclient
+and idexam=new.idexam and resultat="recu";
+If nb=0
+then delete from Exampermis where 2=0;
+End if;
+End; //
+delimiter ;
